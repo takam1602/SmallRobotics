@@ -1,1 +1,36 @@
-Hello World, this repository is initial repo for small robotics project.
+# Small Robotics -名前はまだない- 
+理論と実装のプロジェクト。
+
+手と頭を動かして頑張る。
+
+## Current Progress
+ArduinoDeXXXさんのエントリ
+<https://www.instructables.com/id/%E5%8D%8A%E6%97%A5%E3%81%A7%E4%BD%9C%E3%82%8B%E5%80%92%E7%AB%8B%E6%8C%AF%E5%AD%90/>
+を参考に部品を注文。
+
+現在到着待ち。
+
+- 1 点 タミヤ 楽しい工作シリーズ No.157 ユニバーサルプレート 2枚セット (70157)
+- 1 点  タミヤ 楽しい工作シリーズ No.168 ダブルギヤボックス 左右独立4速タイプ 
+- 1 点 タミヤ 楽しい工作シリーズ No.157 ユニバーサルプレート 2枚セット (70157)
+- 1 点 Arduinoをはじめよう 第3版 (Make:PROJECTS), Massimo Banzi
+- 1 点 Arduinoをはじめようキット
+- 1 点 タミヤ 楽しい工作シリーズ No.145 ナロータイヤセット 58mm径 (70145)
+- 2 点 タミヤ 楽しい工作シリーズ No.151 単3電池ボックス 2本用 スイッチ付 (70151)
+- 1 点 タミヤ 楽しい工作シリーズ No.143 ユニバーサルアームセット (70143)
+- 1 点 モータードライバー　TA7291P　2個セット 
+
+- 1.【K-04912】小型圧電振動ジャイロモジュール 
+
+## Objectevs
+ - カルマンフィルタについて、理論を理解する。
+ - arduino 言語を使ってみる。始めようキットでLチカ。
+ - 倒立振子を組み立てる。多少のハンダつけくらい？
+ - TBA
+
+## Source File
+
+### [Hello World したい] (source/README.md)
+ハーベスタの協調コントローラ本体のクラスライブラリです。
+
+
