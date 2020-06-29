@@ -1,6 +1,6 @@
 # Arduinoをはじめよう 
 ## ４章.LEDチカチカ
-![完成後の写真](Applications/macdown/IMG_7389.jpeg)  
+ 
 
 ・HIGH/LOW, INPUT/OUTPUTの違いがややこしい。  
 ・配線がわからんかった。マイコン側のジャンパワイヤのつなぐ場所とLEDの位置が大事。ブレッドボード側の原点は適当で良い。ただし、スイッチと抵抗とワイヤの相対位置は大切。  
@@ -50,7 +50,7 @@ void loop() {
 
     
 ##5章. PWM  
-![完成後の写真](Applications/macdown/IMG_7394.jpeg)  
+![完成後の写真](IMG_7394.jpeg)  
 
 ・配線がまじで分からん。GND(写真では赤の線)をどこに接続するか。  
 ・プログラミングも理解に時間がかかった。その辺はコメントに残してわかりやすくした。  
@@ -117,7 +117,7 @@ void loop() {
 
 ##LEDランプ
 
-![完成後の写真](Applications/macdown/IMG_0234.jpeg)  
+![完成後の写真](IMG_0234.jpeg)  
 
 急に本格的になり取っ付きにくい。Arduino側のスケッチは前章と変わらんが、Processing側は難しかった。  
 難しい点；
