@@ -243,7 +243,8 @@ void draw() {
 
 
 //fetchdataってSwift UIのCore Dataのところで出てきたやつ。読めるけどかけない。ulrとかその辺がどうなってるのか理解したい。
- void fetchData() {
+
+void fetchData() {
   String data;
   String chunk;
 
