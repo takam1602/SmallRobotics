@@ -30,7 +30,6 @@ void setup() {
   String arduinoPort = Serial.list()[0];
 
   port = new Serial(this, arduinoPort, 9600);
-
   lastTime = millis();
   fetchData();
 }
