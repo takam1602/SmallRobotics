@@ -14,6 +14,8 @@ void loop() {
   rot = rotation.toInt();
 
   if ( rot != 0) {
+    
+//    正の向きに回転
     if (rot > 0 && rot <= 255) {
       analogWrite(6, rot);
       analogWrite(9, rot);
@@ -21,20 +23,16 @@ void loop() {
       analogWrite(11, 0);
       Serial.println(rot);
     }
+
+//    逆向きに回転
     else if (rot < 0 && rot >= -255) {
-//      プラスの値しか読み込まない
+//      プラスの値しか読み込まないことに注意
       rot = -rot;
       analogWrite(5, rot);
       analogWrite(11, rot);
       analogWrite(6, 0);
       analogWrite(9, 0);
       Serial.println(-rot);
-    }
-    else if (rot == 0) {
-      analogWrite(5, 0);
-      analogWrite(6, 0);
-      analogWrite(11, 0);
-      analogWrite(9, 0);
     }
   }
 }
