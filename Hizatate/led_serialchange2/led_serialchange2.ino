@@ -11,6 +11,7 @@ void setup() {
 }
 
 void loop() {
+<<<<<<< HEAD
   rotation = Serial.readString();
   rotate = rotation.toInt();
   rotate1 = rotate - 1000;
@@ -24,6 +25,22 @@ void loop() {
     analogWrite(10, 0);
     Serial.print (rotate1);
     Serial.println("right");
+=======
+  brightness = Serial.readString();
+   brt = brightness.toInt();
+  if(brt != 0)
+  {
+    if(brt >= 0 && brt <= 255)
+    {
+      analogWrite(3,brt);  
+      Serial.println(brt);
+    }
+    else
+    {
+      analogWrite(3,0);
+      Serial.println("err"); 
+    }
+>>>>>>> f776d5356a961eec8a6e8e29c1a97bbe9ed48436
   }
   else if (rotate >= 2000 && rotate <= 2255)
   {

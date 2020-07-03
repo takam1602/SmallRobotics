@@ -22,12 +22,13 @@ void loop() {
       Serial.println(rot);
     }
     else if (rot < 0 && rot >= -255) {
+//      プラスの値しか読み込まない
       rot = -rot;
       analogWrite(5, rot);
       analogWrite(11, rot);
       analogWrite(6, 0);
       analogWrite(9, 0);
-      Serial.println(rot);
+      Serial.println(-rot);
     }
     else if (rot == 0) {
       analogWrite(5, 0);
