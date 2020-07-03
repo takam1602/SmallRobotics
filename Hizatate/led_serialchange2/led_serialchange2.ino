@@ -11,7 +11,7 @@ void loop() {
   brightness = Serial.readString();
    brt = brightness.toInt();
   if(brt != 0)
-  (
+  {
     if(brt >= 0 && brt <= 255)
     {
       analogWrite(3,brt);  
