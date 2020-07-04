@@ -67,11 +67,11 @@
 　     
 　       
 【動かしてみる】  
-　 モーターだけ動かす。最初は片方の車輪、次に両車輪、そして逆回転という３段階で進めました。シリアル通信でキーボードから入力した値をモータ出力としました。  ポイントは、「全てのピンの役割を意識せよ。」これに限ります。  
+　 まずはモーターだけ動かす。最初は片方の車輪、次に両車輪、そして逆回転という３段階で進めました。シリアル通信でキーボードから入力した値をモータ出力としました。  ポイントは、「全てのピンの役割を意識せよ。」これに限ります。  
 　 モーターは2つのリード線に繋がっていて、逆にすると逆回転します。プラスを(6,9)、GNDを(5,11)とすると正の向き、プラスを(5,11)、GNDを(6,9)とすると逆向きに回転させるのが次のスケッチ。入力した値の正負と回転の向きを対応づけています。しかし、マイナスの値はプラスにしてやらないとアナログ入力できません。そこは if 文で分けて絶対値を取るようにします。
 　
 
-```
+``` c 
 String rotation;
 int rot;
 
@@ -119,50 +119,199 @@ void loop() {
 * ジャイロモジュールの出力をテストしてみた。  
 
 ```c  
-/* https://www.petitmonte.com/robot/howto_gyro_sensor.html 参照。
+/* https://www.petitmonte.com/robot/howto_gyro_sensor.html を参考にした。
   ジャイロセンサの出力をみるスケッチ　*/
 
+//  ジャイロの出力は1024以下の非負整数なので、それを角速度に変換する
+//感度: 0.67[mV/deg/sec]
+
+float baseVol1 = 1.35;
+float baseVol2 = 1.35;
 
 void setup() {
   Serial.begin(9600);
-
 }
 
 void loop() {
-  // 静止時出力の実測値(本来は1.35V)
-  // ※机の上など環境により異なりますので適宜、変更して下さい。
-  float base_voltage1 = 1.44;
-  float base_voltage2 = 1.44;
 
-  // ジャイロ(G1)
-  float voltage = (analogRead(A0) / 1024.0) * 5;
-  voltage = (float)((int)((voltage) * 100)) / 100; // 小数点第3位以降は切り捨て
+  if (( millis() > 1000 ) && ( millis() < 4000 )) {
+    //  起動後1〜4秒は静止時出力を決める。出力の平均値を取る
+    int i;
+    float volForBaseVol1[300];
+    float volForBaseVol2[300];
+    float sumVolForBaseVol1 = 0;
+    float sumVolForBaseVol2 = 0;
 
-  Serial.print("G1:");
-  Serial.print(voltage);
-  Serial.print("V 角速度:");
-  Serial.print((voltage - base_voltage1) / (0.67 / 1000));
-  Serial.print(" deg/sec");
+    for ( i = 0; i < 300; i++ ) {
+      volForBaseVol1[i] = analogRead(A5);
+      volForBaseVol2[i] = analogRead(A1);
+      sumVolForBaseVol1 += volForBaseVol1[i];
+      sumVolForBaseVol2 += volForBaseVol2[i];
+      i++;
+      delay(10);
+    }
 
-  // ジャイロ(G2)
-  voltage = (analogRead(A1) / 1024.0) * 5;
-  voltage = (float)((int)((voltage) * 100)) / 100; // 小数点第3位以降は切り捨て
+//確からしい値にするために二倍しているが、なぜこうなってしまうのか？そして、Serial.printが２回もされてしまうのが意味不明。
+    baseVol1 = sumVolForBaseVol1 / 1024.0 * 5 / 300 * 2;
+    baseVol2 = sumVolForBaseVol2 / 1024.0 * 5 / 300 * 2;
+    Serial.print("baseVol1 = ");
+    Serial.println(baseVol1);
+    Serial.print("baseVol2 = ");
+    Serial.println(baseVol2);
+  }
 
-  Serial.print(" G2:");
-  Serial.print(voltage);
-  Serial.print("V 角速度:");
-  Serial.print((voltage - base_voltage2) / (0.67 / 1000));
-  Serial.print(" deg/sec");
-  Serial.println("");
-  delay(1000);
+  else if ( millis() >= 4000 ) {
+
+    // ジャイロ(G1)
+    float voltage = analogRead(A5) / 1024.0 * 5;  // voltageは０〜５をとる
+    voltage = (float)((int)((voltage) * 100)) / 100; // 小数点第3位以降は切り捨て
+    Serial.print("G1:");
+    Serial.print(voltage);
+    Serial.print("V ");
+    Serial.print("角速度:");
+    Serial.print((voltage - baseVol1) / (0.67 / 1000));
+    Serial.print(" deg/sec  ");
+
+    // ジャイロ(G2)
+    voltage = (analogRead(A1) / 1024.0) * 5;
+    voltage = (float)((int)((voltage) * 100)) / 100; // 小数点第3位以降は切り捨て
+    Serial.print("G2:");
+    Serial.print(voltage);
+    Serial.print("V ");
+    Serial.print("角速度:");
+    Serial.print((voltage - baseVol2) / (0.67 / 1000));
+    Serial.println(" deg/sec");
+    delay(3000);
+  }
+
+  else {
+  }
+
 }
 
 ```  
+　同じジャイロでも、毎回静止出力が毎回違う。ここを何らかの方法で補正しないと使い物にならない。また、付属説明書には静止出力1.35 [Vdc]となっていたが、大体 3 [Vdc]だった。ここまでずれる原因がわからない。
+　そこで、`training()`を作った。起動から4秒間は静止させておき、1-４秒の出力の平均値を静止出力とした。
+　未解決問題はコメントに残しておいた。
+
+　  
+　    
+
+
+
 
 倒立振子走行用プログラム  
 
-```
+``` c
 
+/* "A very easy and simple inverted pendulum balancing robot" You need only half a day to make it, if you have some Materials.
+  Copyright (C) 2014 ArduinoDeXXX All Rights Reserved. */
+
+#include <MsTimer2.h>
+
+volatile int i = 0;
+volatile byte countS = 0;
+long zeroOmegaI = 0;
+volatile int recOmegaI[10];
+volatile int omegaI = 0;
+volatile long thetaI = 0;
+volatile long sumPower = 0;
+volatile long sumSumP = 0;
+
+//パラメータ重み付け係数
+const int kAngle = 45;
+const int kOmega = 85;
+const long kSpeed = 57;
+const long kDistance = 60;
+
+volatile long powerScale;
+volatile int power;
+volatile long vE5 = 0;
+volatile long xE5 = 0;
+
+
+void setup () {
+  Serial .begin(115200);
+  pinMode(4, OUTPUT);
+  pinMode(5, OUTPUT);
+  pinMode(6, OUTPUT);
+  pinMode(7, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);
+
+  for ( i = 0 ; i < 10 ; i++ ) {
+    recOmegaI[i] = 0;
+    delay(300);
+  }
+
+  training();
+  MsTimer2::set(5, chkAndCtl);
+  MsTimer2::start();
+}
+
+
+void loop () {
+
+  //モーター正回転
+  if ( power > 0 ) {
+    analogWrite( 6, power );
+    digitalWrite( 4, HIGH );
+    digitalWrite( 5, LOW );
+    analogWrite( 9, power );
+    digitalWrite( 7, HIGH );
+    digitalWrite( 8, LOW );
+  }
+  //  モーター逆回転
+  else {
+    analogWrite( 6, - power );
+    digitalWrite( 4, LOW );
+    digitalWrite( 5, HIGH );
+    analogWrite( 9, - power );
+    digitalWrite( 7, LOW );
+    digitalWrite( 8, HIGH );
+  }
+
+}
+
+//倒立安定点を決める
+void training() {
+  delay (1000);
+  for ( i = 0 ; i < 500 ; i++ ) {
+    zeroOmegaI = zeroOmegaI + analogRead(A5);
+  }
+  zeroOmegaI = zeroOmegaI / i;
+}
+
+void chkAndCtl() {
+  omegaI = analogRead(A5) - zeroOmegaI;
+  if  (abs( omegaI ) < 5 ) {
+    omegaI = 0;
+  }
+  recOmegaI[0] = omegaI;
+  thetaI = thetaI + omegaI;
+  countS = 0;//60
+  for ( i = 0 ; i < 10 ; i++ ) {
+    if  (abs( recOmegaI[i] ) < 8 ) {
+      countS++;
+    }
+  }
+  if ( countS > 9 ) {
+    thetaI = 0;
+    vE5 = 0;
+    xE5 = 0;
+    sumPower = 0;
+    sumSumP = 0;
+  }
+  for ( i = 9 ; i > 0 ; i-- ) {
+    recOmegaI[ i ] = recOmegaI[ i - 1 ];
+  }
+  powerScale = (kAngle * thetaI / 200) + (kOmega * omegaI / 78) + (kpower = max (min ( 95 * powerScale / 100 , 255 ) , -255 );
+               sumPower = sumPower + power;
+               sumSumP = sumSumP + sumPower;
+               vE5 = ?? ?
+                     xE5 = ?? ?
+}  
+```
 
 
 
