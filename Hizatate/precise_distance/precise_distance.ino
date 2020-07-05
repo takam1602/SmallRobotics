@@ -1,6 +1,4 @@
 //ultrasonic sensorの温度補正ver c=331.5+0.6*temp　を使う
-//なぜか出力がとびとびになってしまう。センサーからの入力のタイミングの問題だろうか
-
 #include <DHT.h>
 #define DHTPIN 2
 #define DHTTYPE DHT11
@@ -22,23 +20,25 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+//超音波センサ
   digitalWrite(trg,HIGH); //発射
   delayMicroseconds(9);
   digitalWrite(trg,LOW); //発射終わり
+  duration = pulseIn(echo,HIGH);
 
+//温湿度度計  
   float h = dht.readHumidity();
   float t = dht.readTemperature();
-
   if (isnan(h) || isnan(t)) {
     Serial.println("Failed to read from DHT sensor!");
     return;
   }
-  
-  duration = pulseIn(echo,HIGH);
-  duration = duration*0.5*0.0000001; //半分にしてmicrosec2sec
-  distance = duration*(331.5+0.6*(t+273.15))*100; //m2cm
-  
+
+//演算
+  duration = duration*0.5*0.000001; //半分にしてmicrosec2sec
+  distance = duration*(331.5+0.6*t)*100; //m2cm
+
+//シリアル出力
   Serial.print("Humidity:"); 
   Serial.print(h);
   Serial.print("%\t_");
