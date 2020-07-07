@@ -22,7 +22,7 @@ void loop() {
     float sumVolForBaseVol2 = 0;
 
     for ( i = 0; i < 300; i++ ) {
-      volForBaseVol1[i] = analogRead(A5);
+      volForBaseVol1[i] = analogRead(A0);
       volForBaseVol2[i] = analogRead(A1);
       sumVolForBaseVol1 += volForBaseVol1[i];
       sumVolForBaseVol2 += volForBaseVol2[i];
@@ -30,9 +30,9 @@ void loop() {
       delay(10);
     }
 
-//確からしい値にするために二倍しているが、なぜこうなってしまうのか？そして、Serial.printが２回もされてしまうのが意味不明。
-    baseVol1 = sumVolForBaseVol1 / 1024.0 * 5 / 300 * 2;
-    baseVol2 = sumVolForBaseVol2 / 1024.0 * 5 / 300 * 2;
+    //確からしい値にするために二倍しているが、なぜこうなってしまうのか？そして、Serial.printが２回もされてしまうのが意味不明。
+    baseVol1 = sumVolForBaseVol1 / 1023.0 * 5 / 300 * 2;
+    baseVol2 = sumVolForBaseVol2 / 1023.0 * 5 / 300 * 2;
     Serial.print("baseVol1 = ");
     Serial.println(baseVol1);
     Serial.print("baseVol2 = ");
@@ -42,23 +42,23 @@ void loop() {
   else if ( millis() >= 4000 ) {
 
     // ジャイロ(G1)
-    float voltage = analogRead(A5) / 1024.0 * 5;  // voltageは０〜５をとる
-    voltage = (float)((int)((voltage) * 100)) / 100; // 小数点第3位以降は切り捨て
+    float voltage = analogRead(A0) / 1023.0 * 5;  // voltageは０〜５をとる
+    //    voltage = (float)((int)((voltage) * 100)) / 100; // 小数点第3位以降は切り捨て
     Serial.print("G1:");
     Serial.print(voltage);
     Serial.print("V ");
     Serial.print("角速度:");
-    Serial.print((voltage - baseVol1) / (0.67 / 1000));
+    Serial.print((voltage - baseVol1) * 1000 / 0.67);
     Serial.print(" deg/sec  ");
 
     // ジャイロ(G2)
-    voltage = (analogRead(A1) / 1024.0) * 5;
-    voltage = (float)((int)((voltage) * 100)) / 100; // 小数点第3位以降は切り捨て
+    voltage = (analogRead(A1) / 1023.0) * 5;
+    //    voltage = (float)((int)((voltage) * 100)) / 100; // 小数点第3位以降は切り捨て
     Serial.print("G2:");
     Serial.print(voltage);
     Serial.print("V ");
     Serial.print("角速度:");
-    Serial.print((voltage - baseVol2) / (0.67 / 1000));
+    Serial.print((voltage - baseVol2) * 1000 / 0.67);
     Serial.println(" deg/sec");
     delay(3000);
   }
