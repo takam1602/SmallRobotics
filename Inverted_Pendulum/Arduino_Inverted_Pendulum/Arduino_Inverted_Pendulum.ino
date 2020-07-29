@@ -1,4 +1,4 @@
-/* "A very easy and simple inverted pendulum balancing robot" You need only half a day to make it, if you have some Materials.
+2/* "A very easy and simple inverted pendulum balancing robot" You need only half a day to make it, if you have some Materials.
   Copyright (C) 2014 ArduinoDeXXX All Rights Reserved. */
 
 #include <MsTimer2.h>

@@ -27,7 +27,7 @@ void loop() {
       sumVolForBaseVol1 += volForBaseVol1[i];
       sumVolForBaseVol2 += volForBaseVol2[i];
       i++;
-      delay(10);
+      delay(20);
     }
 
     //確からしい値にするために二倍しているが、なぜこうなってしまうのか？そして、Serial.printが２回もされてしまうのが意味不明。

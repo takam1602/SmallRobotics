@@ -123,10 +123,18 @@ void loop() {
   ジャイロセンサの出力をみるスケッチ　*/
 
 //  ジャイロの出力は1024以下の非負整数なので、それを角速度に変換する
-//感度: 0.67[mV/deg/sec]
+//感度: 0.67[mV/deg/sec]  //この感度は温度によって変わる。
 
-float baseVol1 = 1.35;
-float baseVol2 = 1.35;
+// 配列作った方が可読性上がる。桁数揃えるのないかな
+
+float baseVol1;
+float baseVol2;
+float baseVol3;
+float baseVol4;
+#define MINRATIO 0.999  //ジャイロの値が安定しているか比をとって判別する際使う
+#define MAXRATIO 1.001
+
+bool isBaseDecided = false;
 
 void setup() {
   Serial.begin(9600);
@@ -134,67 +142,160 @@ void setup() {
 
 void loop() {
 
-  if (( millis() > 1000 ) && ( millis() < 4000 )) {
-    //  起動後1〜4秒は静止時出力を決める。出力の平均値を取る
+  if (isBaseDecided == false) {
+    //  起動後、A0からの出力が安定したら静止電圧を決めることとする。せいぜい20秒あれば安定するだろう。判断するために比を見る。
+
+    float newVolFor1 = 1;  float oldVolFor1 = 1;
+    float newVolFor2 = 1;  float oldVolFor2 = 1;
+    float newVolFor3 = 1;  float oldVolFor3 = 1;
+    float newVolFor4 = 1;  float oldVolFor4 = 1;
+
+//はじめ十分時間経過後の出力をとる方針であった。しかし、実際にanalogReadしないとおそらく温度が上がらないからダメ。
+    do {
+      newVolFor1 = analogRead(A0);
+      newVolFor2 = analogRead(A1);
+      newVolFor3 = analogRead(A2);
+      newVolFor4 = analogRead(A3);
+      float ratioVol1 = newVolFor1 / oldVolFor1;
+      float ratioVol2 = newVolFor2 / oldVolFor2;
+      float ratioVol3 = newVolFor3 / oldVolFor3;
+      float ratioVol4 = newVolFor4 / oldVolFor4;
+
+      Serial.println(ratioVol1);
+
+      //このifの条件を満たした時に安定したとみなし、静止電圧を決める。
+
+      if ( (ratioVol1 < MAXRATIO && ratioVol1 > MINRATIO) && (ratioVol2 < MAXRATIO && ratioVol2 > MINRATIO) && (ratioVol3 < MAXRATIO && ratioVol3 > MINRATIO) && (ratioVol4 < MAXRATIO && ratioVol4 > MINRATIO)) {
+        break;
+      }
+
+      //変数をswap
+      oldVolFor1 = newVolFor1;
+      oldVolFor2 = newVolFor2;
+      oldVolFor3 = newVolFor3;
+      oldVolFor4 = newVolFor4;
+    } while (1);
+
+    //breakによりdo-whileを抜けるとここに来る。ここからここから静止電圧を決める
     int i;
-    float volForBaseVol1[300];
-    float volForBaseVol2[300];
+    float volForBaseVol1[100];
+    float volForBaseVol2[100];
+    float volForBaseVol3[100];
+    float volForBaseVol4[100];
+
     float sumVolForBaseVol1 = 0;
     float sumVolForBaseVol2 = 0;
-
-    for ( i = 0; i < 300; i++ ) {
-      volForBaseVol1[i] = analogRead(A5);
+    float sumVolForBaseVol3 = 0;
+    float sumVolForBaseVol4 = 0;
+    
+    //8秒間、１００個のデータをとり平均する。
+    for (i = 0; i < 80; i++) {
+      volForBaseVol1[i] = analogRead(A0);
       volForBaseVol2[i] = analogRead(A1);
+      volForBaseVol3[i] = analogRead(A2);
+      volForBaseVol4[i] = analogRead(A3);
+
       sumVolForBaseVol1 += volForBaseVol1[i];
       sumVolForBaseVol2 += volForBaseVol2[i];
-      i++;
-      delay(10);
+      sumVolForBaseVol3 += volForBaseVol3[i];
+      sumVolForBaseVol4 += volForBaseVol4[i];
+
+      delay(100);
     }
 
-//確からしい値にするために二倍しているが、なぜこうなってしまうのか？そして、Serial.printが２回もされてしまうのが意味不明。
-    baseVol1 = sumVolForBaseVol1 / 1024.0 * 5 / 300 * 2;
-    baseVol2 = sumVolForBaseVol2 / 1024.0 * 5 / 300 * 2;
+
+    baseVol1 = sumVolForBaseVol1 / 1023.0 * 5 / 80;
+    baseVol2 = sumVolForBaseVol2 / 1023.0 * 5 / 80;
+    baseVol3 = sumVolForBaseVol3 / 1023.0 * 5 / 80;
+    baseVol4 = sumVolForBaseVol4 / 1023.0 * 5 / 80;
+
+    //静止電圧をシリアル表示
     Serial.print("baseVol1 = ");
     Serial.println(baseVol1);
     Serial.print("baseVol2 = ");
     Serial.println(baseVol2);
+    Serial.print("baseVol3 = ");
+    Serial.println(baseVol3);
+    Serial.print("baseVol4 = ");
+    Serial.println(baseVol4);
+
+    isBaseDecided = true;
   }
 
-  else if ( millis() >= 4000 ) {
+//ここから計測する。
+  else if (isBaseDecided == true) {
 
-    // ジャイロ(G1)
-    float voltage = analogRead(A5) / 1024.0 * 5;  // voltageは０〜５をとる
-    voltage = (float)((int)((voltage) * 100)) / 100; // 小数点第3位以降は切り捨て
+    // ジャイロ1(G1)
+    float voltage = analogRead(A0) / 1023.0 * 5;  // voltageは０〜５をとる
+
+    //    voltage = (float)((int)((voltage) * 100)) / 100; // 小数点第3位以降は切り捨て
     Serial.print("G1:");
     Serial.print(voltage);
     Serial.print("V ");
     Serial.print("角速度:");
-    Serial.print((voltage - baseVol1) / (0.67 / 1000));
+    Serial.print((voltage - baseVol1) * 1000 / 0.67);
     Serial.print(" deg/sec  ");
 
-    // ジャイロ(G2)
-    voltage = (analogRead(A1) / 1024.0) * 5;
-    voltage = (float)((int)((voltage) * 100)) / 100; // 小数点第3位以降は切り捨て
+    // ジャイロ1(G2)u
+    voltage = analogRead(A1) / 1023.0 * 5;
+    //    voltage = (float)((int)((voltage) * 100)) / 100; // 小数点第3位以降は切り捨て
     Serial.print("G2:");
     Serial.print(voltage);
     Serial.print("V ");
     Serial.print("角速度:");
-    Serial.print((voltage - baseVol2) / (0.67 / 1000));
+    Serial.print((voltage - baseVol2) * 1000 / 0.67);
+    Serial.print(" deg/sec  ");
+
+    // ジャイロ2(G1)
+    voltage = analogRead(A2) / 1023.0 * 5;  // voltageは０〜５をとる
+    //    voltage = (float)((int)((voltage) * 100)) / 100; // 小数点第3位以降は切り捨て
+    Serial.print("G3:");
+    Serial.print(voltage);
+    Serial.print("V ");
+    Serial.print("角速度:");
+    Serial.print((voltage - baseVol3) * 1000 / 0.67);
+    Serial.print(" deg/sec  ");
+
+    // ジャイロ2(G2)
+    voltage = analogRead(A3) / 1023.0 * 5;
+    //    voltage = (float)((int)((voltage) * 100)) / 100; // 小数点第3位以降は切り捨て
+    Serial.print("G4:");
+    Serial.print(voltage);
+    Serial.print("V ");
+    Serial.print("角速度:");
+    Serial.print((voltage - baseVol4) * 1000 / 0.67);
     Serial.println(" deg/sec");
-    delay(3000);
-  }
 
-  else {
-  }
+    delay(500);
 
+  }
 }
-
 ```  
+
 　同じジャイロでも、静止出力が毎回違う。ここを何らかの方法で補正しないと使い物にならない。また、付属説明書には静止出力1.35 [Vdc]となっていたが、大体 3 [Vdc]だった。ここまでずれる原因がわからない。
 　そこで、起動から4秒間は静止させておき、1-４秒の出力の平均値を静止出力とした。
-　未解決問題はコメントに残しておいた。
+　未解決問題はコメントに残しておいた。  
+　  
+　  石井先生に聞きにいきました。  
+　  ジャイロの静止電圧1.35Vdcというのは、ジャイロそのものの性能のこと。ジャイロモジュールにはオペアンプなどのフィルターが噛まされており、実際には2.5Vdcとかになる。  
+　  ジャイロに電流が流れると温度が上昇し、精子電圧や感度といった定数が変わるので、静止電圧を決める前にあっためておく必要がある。温める際、実際にanalogReadする必要がある。そこで、隣り合うセンサ値の比をとって、それがある値におさまるまで待って、そこから静止電圧を決めてやることにした。
+　  定数に意味はない。ジャイロの出力値と制御するエンコーダの入力値を決めておけば、感度などが変わっても関係ない。フィードバック。
+　
 
 　  
+　次にロータリエンコーダ（ノンクリックタイプ）をテストした。  
+　重要そうな特徴  
+　　* 1個90円  
+　　* 回転トルク25±15mN•m  
+　　* 24パルス （分解能とは、軸を一回転させた場合に出力されるパルス数である）    
+　信号を取るのに苦戦した。まずは仕様を理解する必要がある。倒立振子に組み込む際にそのままだと非常に硬い点と、タイアにどう付けるかという点で工夫が必要である。  
+　  
+　テストコード
+
+　``` c
+　
+　```
+
 　    
 
 
