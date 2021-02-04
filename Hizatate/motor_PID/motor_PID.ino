@@ -1,6 +1,6 @@
 
-#define MotorP 10
-#define MotorN 11
+#define MotorP 5
+#define MotorN 6
 #define Encoder1 2
 #define Encoder2 3
 
@@ -65,8 +65,8 @@ void loop()
 {
 int ref = 90;
 int manu = PID(255,10,tachoRpm,ref);
-  analogWrite(MotorP,manu);
-  analogWrite(MotorN,0);
+  analogWrite(5,255);
+  analogWrite(6,0);
 Serial.print(tachoRpm);
 Serial.print(",");
 Serial.println(manu);

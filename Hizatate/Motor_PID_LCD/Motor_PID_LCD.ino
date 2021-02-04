@@ -10,6 +10,7 @@ volatile unsigned long tachoBefore = 0;//クランクセンサーの前回の反
 double pre_err = 0;
 
 void setup() {
+  Serial.begin(9600);
   pinMode(A0,INPUT);
   pinMode(1,INPUT_PULLUP);
 pinMode(10,INPUT_PULLUP);
@@ -41,8 +42,8 @@ int PID(int MAX,int MIN,float current,float ref)
 {
   double dt = 0.001;
   int Width = MAX-MIN;
-  int Pgain= 1;
-  int Igain =1;
+  int Pgain= 15;
+  int Igain =2;
   int Dgain =0;
   static double P = 0;
   static double I = 0;
@@ -87,10 +88,11 @@ if(Switch2 == LOW)
 }
 else{
 }
+
 int manu = PID(255,10,tachoRpm,ref);
   analogWrite(5,manu);
   analogWrite(6,0);
-
+Serial.println();
   lcd.setCursor(4, 0);
 lcd.print(ref);
 lcd.setCursor(4, 1);
