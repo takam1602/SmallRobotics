@@ -9,8 +9,11 @@ void setup() {
 lcd.begin(16, 2);
 lcd.clear();
 lcd.setCursor(0, 0);
-lcd.print("hello,world");
+lcd.print("ref:");
+lcd.setCursor(0, 1);
+lcd.print("rpm:");
 }
 
 void loop() {
+  
 }
