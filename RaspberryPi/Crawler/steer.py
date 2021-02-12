@@ -4,6 +4,7 @@
 Created on Wed Feb 10 19:47:03 2021
 
 @author: hizatate
+#PCからWiFi使って遠隔操作するためのやつ。
 """
 import os
 import sys, termios, atexit
