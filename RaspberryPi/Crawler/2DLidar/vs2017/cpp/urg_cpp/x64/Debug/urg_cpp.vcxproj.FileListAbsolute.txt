@@ -1,0 +1,6 @@
+C:\Users\tomoaki\Desktop\2D_Lidar\urg_library-1.2.5\vs2017\cpp\x64\Debug\urg_cpp.pdb
+C:\Users\tomoaki\Desktop\2D_Lidar\urg_library-1.2.5\vs2017\cpp\urg_cpp\x64\Debug\urg_cpp.pdb
+C:\Users\tomoaki\Desktop\urg_library-1.2.5\vs2017\cpp\x64\Debug\urg_cpp.pdb
+C:\Users\tomoaki\Desktop\urg_library-1.2.5\vs2017\cpp\urg_cpp\x64\Debug\urg_cpp.pdb
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\x64\Debug\urg_cpp.pdb
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\urg_cpp\x64\Debug\urg_cpp.pdb

@@ -1,0 +1,2 @@
+C:\Users\tomoaki\Desktop\2D_Lidar\urg_library-1.2.5\vs2017\cpp\Win32\Debug\urg_cpp.pdb
+C:\Users\tomoaki\Desktop\2D_Lidar\urg_library-1.2.5\vs2017\cpp\urg_cpp\Win32\Debug\urg_cpp.pdb

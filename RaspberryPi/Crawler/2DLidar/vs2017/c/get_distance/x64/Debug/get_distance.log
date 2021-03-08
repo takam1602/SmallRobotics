@@ -1,0 +1,4 @@
+﻿  get_distance.c
+C:\Users\tomoaki\Desktop\2D_Lidar\urg_library-1.2.5\samples\c\get_distance.c(45,27): warning C4013: 関数 'cos' は定義されていません。int 型の値を返す外部関数と見なします。
+C:\Users\tomoaki\Desktop\2D_Lidar\urg_library-1.2.5\samples\c\get_distance.c(46,27): warning C4013: 関数 'sin' は定義されていません。int 型の値を返す外部関数と見なします。
+  get_distance.vcxproj -> C:\Users\tomoaki\Desktop\2D_Lidar\urg_library-1.2.5\vs2017\c\x64\Debug\get_distance.exe

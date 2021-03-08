@@ -1,0 +1,201 @@
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: 中間ディレクトリ (x64\Debug\) に別のプロジェクト (get_distance.vcxproj) と共有されているファイルが含まれています。これにより、クリーンしてリビルド動作が適切に行われない可能性があります。
+  Connection_information.cpp
+  get_distance.cpp
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\samples\cpp\get_distance.cpp(40,44): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\samples\cpp\get_distance.cpp(64,44): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  HoughTransform.cpp
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(17,65): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(17,18): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(47,24): warning C4244: '初期化中': 'double' から 'int' への変換です。データが失われる可能性があります。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(61,20): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(71,26): warning C4267: '初期化中': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(130,44): warning C4244: '=': 'int' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(156,33): warning C4267: '初期化中': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(181,33): warning C4267: '初期化中': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(214,71): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(214,28): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(227,71): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(227,28): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(240,19): warning C4244: '=': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(266,43): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(267,43): warning C4244: '引数': 'double' から 'float' への変換です。データが失われる可能性があります。
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xmemory(694,82): warning C4244: '初期化中': 'float' から '_Objty' への変換です。データが失われる可能性があります。
+          with
+          [
+              _Objty=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(687): message : コンパイル対象の関数 テンプレート インスタンス化 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,float&>(_Alloc &,_Objty *const ,float &)' のリファレンスを確認してください
+          with
+          [
+              _Alloc=std::allocator<int>,
+              _Ty=int,
+              _Objty=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(687): message : コンパイル対象の関数 テンプレート インスタンス化 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,float&>(_Alloc &,_Objty *const ,float &)' のリファレンスを確認してください
+          with
+          [
+              _Alloc=std::allocator<int>,
+              _Ty=int,
+              _Objty=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(705): message : コンパイル対象の関数 テンプレート インスタンス化 'void std::vector<int,std::allocator<int>>::_Emplace_back_with_unused_capacity<float&>(float &)' のリファレンスを確認してください
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(132): message : コンパイル対象の関数 テンプレート インスタンス化 'void std::vector<int,std::allocator<int>>::emplace_back<float&>(float &)' のリファレンスを確認してください
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\utility(192,1): warning C4244: '初期化中': 'float' から '_Ty2' への変換です。データが失われる可能性があります。
+          with
+          [
+              _Ty2=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xmemory(694): message : コンパイル対象の関数 テンプレート インスタンス化 'std::pair<int,int>::pair<int&,float&,0>(_Other1,_Other2) noexcept' のリファレンスを確認してください
+          with
+          [
+              _Other1=int &,
+              _Other2=float &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xmemory(694): message : コンパイル対象の関数 テンプレート インスタンス化 'std::pair<int,int>::pair<int&,float&,0>(_Other1,_Other2) noexcept' のリファレンスを確認してください
+          with
+          [
+              _Other1=int &,
+              _Other2=float &
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(687): message : コンパイル対象の関数 テンプレート インスタンス化 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,int&,float&>(_Alloc &,_Objty *const ,int &,float &)' のリファレンスを確認してください
+          with
+          [
+              _Alloc=std::allocator<std::pair<int,int>>,
+              _Ty=std::pair<int,int>,
+              _Objty=std::pair<int,int>
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(687): message : コンパイル対象の関数 テンプレート インスタンス化 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,int&,float&>(_Alloc &,_Objty *const ,int &,float &)' のリファレンスを確認してください
+          with
+          [
+              _Alloc=std::allocator<std::pair<int,int>>,
+              _Ty=std::pair<int,int>,
+              _Objty=std::pair<int,int>
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(705): message : コンパイル対象の関数 テンプレート インスタンス化 'void std::vector<std::pair<int,int>,std::allocator<std::pair<int,int>>>::_Emplace_back_with_unused_capacity<int&,float&>(int &,float &)' のリファレンスを確認してください
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(63): message : コンパイル対象の関数 テンプレート インスタンス化 'void std::vector<std::pair<int,int>,std::allocator<std::pair<int,int>>>::emplace_back<_Ty1&,float&>(_Ty1 &,float &)' のリファレンスを確認してください
+          with
+          [
+              _Ty1=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\tuple(163,47): warning C4244: '初期化中': '_Ty' から '_Ty' への変換です。データが失われる可能性があります。
+          with
+          [
+              _Ty=int
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\tuple(244): message : コンパイル対象の関数 テンプレート インスタンス化 'std::_Tuple_val<_This>::_Tuple_val<_Ty>(_Other &&)' のリファレンスを確認してください
+          with
+          [
+              _This=float,
+              _Ty=int,
+              _Other=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\tuple(244): message : コンパイル対象の関数 テンプレート インスタンス化 'std::_Tuple_val<_This>::_Tuple_val<_Ty>(_Other &&)' のリファレンスを確認してください
+          with
+          [
+              _This=float,
+              _Ty=int,
+              _Other=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\tuple(325): message : コンパイル対象の関数 テンプレート インスタンス化 'std::tuple<float,int,int>::tuple<std::_Exact_args_t,_Ty,_Ty,_Ty,0>(_Tag,_This2 &&,_Ty &&,_Ty &&)' のリファレンスを確認してください
+          with
+          [
+              _Ty=int,
+              _Tag=std::_Exact_args_t,
+              _This2=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\tuple(325): message : コンパイル対象の関数 テンプレート インスタンス化 'std::tuple<float,int,int>::tuple<std::_Exact_args_t,_Ty,_Ty,_Ty,0>(_Tag,_This2 &&,_Ty &&,_Ty &&)' のリファレンスを確認してください
+          with
+          [
+              _Ty=int,
+              _Tag=std::_Exact_args_t,
+              _This2=int
+          ]
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(163): message : コンパイル対象の関数 テンプレート インスタンス化 'std::tuple<float,int,int>::tuple<int,int,int,0>(_This2 &&,int &&,int &&) noexcept' のリファレンスを確認してください
+          with
+          [
+              _This2=int
+          ]
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(163): message : コンパイル対象の関数 テンプレート インスタンス化 'std::tuple<float,int,int>::tuple<int,int,int,0>(_This2 &&,int &&,int &&) noexcept' のリファレンスを確認してください
+          with
+          [
+              _This2=int
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\tuple(163,47): warning C4244: '初期化中': '_Ty' から '_Ty' への変換です。データが失われる可能性があります。
+          with
+          [
+              _Ty=double
+          ]
+          and
+          [
+              _Ty=float
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\tuple(244): message : コンパイル対象の関数 テンプレート インスタンス化 'std::_Tuple_val<_This>::_Tuple_val<_Ty>(_Other &&)' のリファレンスを確認してください
+          with
+          [
+              _This=float,
+              _Ty=double,
+              _Other=double
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\tuple(244): message : コンパイル対象の関数 テンプレート インスタンス化 'std::_Tuple_val<_This>::_Tuple_val<_Ty>(_Other &&)' のリファレンスを確認してください
+          with
+          [
+              _This=float,
+              _Ty=double,
+              _Other=double
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\tuple(325): message : コンパイル対象の関数 テンプレート インスタンス化 'std::tuple<float,int,int>::tuple<std::_Exact_args_t,_Ty,int&,int&,0>(_Tag,_This2 &&,int &,int &)' のリファレンスを確認してください
+          with
+          [
+              _Ty=double,
+              _Tag=std::_Exact_args_t,
+              _This2=double
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\tuple(325): message : コンパイル対象の関数 テンプレート インスタンス化 'std::tuple<float,int,int>::tuple<std::_Exact_args_t,_Ty,int&,int&,0>(_Tag,_This2 &&,int &,int &)' のリファレンスを確認してください
+          with
+          [
+              _Ty=double,
+              _Tag=std::_Exact_args_t,
+              _This2=double
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xmemory(694): message : コンパイル対象の関数 テンプレート インスタンス化 'std::tuple<float,int,int>::tuple<_Ty,int&,int&,0>(_This2 &&,int &,int &) noexcept' のリファレンスを確認してください
+          with
+          [
+              _Ty=double,
+              _This2=double
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\xmemory(694): message : コンパイル対象の関数 テンプレート インスタンス化 'std::tuple<float,int,int>::tuple<_Ty,int&,int&,0>(_This2 &&,int &,int &) noexcept' のリファレンスを確認してください
+          with
+          [
+              _Ty=double,
+              _This2=double
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(687): message : コンパイル対象の関数 テンプレート インスタンス化 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,double,int&,int&>(_Alloc &,_Objty *const ,double &&,int &,int &)' のリファレンスを確認してください
+          with
+          [
+              _Alloc=std::allocator<std::tuple<float,int,int>>,
+              _Ty=std::tuple<float,int,int>,
+              _Objty=std::tuple<float,int,int>
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(687): message : コンパイル対象の関数 テンプレート インスタンス化 'void std::_Default_allocator_traits<_Alloc>::construct<_Ty,double,int&,int&>(_Alloc &,_Objty *const ,double &&,int &,int &)' のリファレンスを確認してください
+          with
+          [
+              _Alloc=std::allocator<std::tuple<float,int,int>>,
+              _Ty=std::tuple<float,int,int>,
+              _Objty=std::tuple<float,int,int>
+          ]
+C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\vector(705): message : コンパイル対象の関数 テンプレート インスタンス化 'void std::vector<std::tuple<float,int,int>,std::allocator<std::tuple<float,int,int>>>::_Emplace_back_with_unused_capacity<_Ty,int&,int&>(_Ty &&,int &,int &)' のリファレンスを確認してください
+          with
+          [
+              _Ty=double
+          ]
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\get_distance\HoughTransform.cpp(104): message : コンパイル対象の関数 テンプレート インスタンス化 'void std::vector<std::tuple<float,int,int>,std::allocator<std::tuple<float,int,int>>>::emplace_back<double,_Ty&,int&>(double &&,_Ty &,int &)' のリファレンスを確認してください
+          with
+          [
+              _Ty=int
+          ]
+  コードを生成中...
+  get_distance.vcxproj -> C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\x64\Debug\get_lines.exe

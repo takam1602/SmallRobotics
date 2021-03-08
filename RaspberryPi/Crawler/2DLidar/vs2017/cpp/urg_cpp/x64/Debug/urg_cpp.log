@@ -1,0 +1,7 @@
+﻿  ticks.cpp
+  Urg_driver.cpp
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\src\Urg_driver.cpp(522,55): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\src\Urg_driver.cpp(528,67): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\src\Urg_driver.cpp(534,71): warning C4267: '引数': 'size_t' から 'int' に変換しました。データが失われているかもしれません。
+  コードを生成中...
+  urg_cpp.vcxproj -> C:\Users\tomoaki\SmallRobotics\RaspberryPi\Crawler\2DLidar\vs2017\cpp\x64\Debug\urg_cpp.lib

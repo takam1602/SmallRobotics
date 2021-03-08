@@ -1,0 +1,3 @@
+﻿cl : コマンド ライン warning D9035: オプション 'Gm' の使用は現在推奨されていません。今後のバージョンからは削除されます。
+  open_urg_sensor.c
+  get_distance.vcxproj -> C:\Users\tomoaki\Desktop\2D_Lidar\urg_library-1.2.5\vs2017\c\Win32\Debug\get_distance.exe
